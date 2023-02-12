@@ -1,0 +1,23 @@
+{
+  "cancel": "Скасувати",
+  "language": "Мова",
+  "login": "Увiйти",
+  "logout": "Вийти",
+  "page.login": "Login",
+  "page.initial": "Main",
+  "password": "Пароль",
+  "signIn": "Вхiд",
+  "signUp": "Вихiд",
+  "createBook": "Створити книгу",
+  "bookDescription": "Опис",
+  "publicationDate": "Дата публікації",
+  "author": "Автор",
+  "bookTitleForm": "Книга",
+  "bookNameField": "Назва книги",
+  "bookDescriptionField": "Опис",
+  "bookPublicationDateField": "Дата публікації",
+  "bookAuthorField": "Автор",
+  "authorFieldLabel": "Виберіть автора",
+  "cancelButton": "Відмінити",
+  "saveButton": "Зберегти"
+}

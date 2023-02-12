@@ -1,0 +1,23 @@
+{
+  "cancel": "Cancel",
+  "language": "Language",
+  "login": "Login",
+  "logout": "Logout",
+  "page.login": "Login",
+  "page.initial": "Main",
+  "password": "Password",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "createBook": "Create book",
+  "bookDescription": "Description",
+  "publicationDate": "Publication date",
+  "author": "Author",
+  "bookTitleForm": "The Book",
+  "bookNameField": "Book name",
+  "bookDescriptionField": "Book description",
+  "bookPublicationDateField": "Publication date",
+  "bookAuthorField": "Book author",
+  "authorFieldLabel": "Choose author",
+  "cancelButton": "Cancel",
+  "saveButton": "Save"
+}
