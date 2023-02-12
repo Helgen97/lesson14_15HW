@@ -16,7 +16,7 @@ import {
   fetchCreatingBook,
   fetchBook,
   fetchEditBook,
-  refreshStore
+  refreshStore,
 } from "../store/actions/actions";
 import Loader from "components/Loader";
 
@@ -59,31 +59,29 @@ const BookEdit = () => {
   const { formatMessage } = useIntl();
   const changePage = useChangePage();
 
-  const [state, setState] = useState({
-    book: {
-      name: "",
-      description: "",
-      publicationDate: "2023-01-01",
-      authorId: 0,
-    },
+  const [bookState, setBookState] = useState({
+    name: "",
+    description: "",
+    publicationDate: "2023-01-01",
+    authorId: 0,
   });
 
   useEffect(() => {
-    dispatch(refreshStore());
+    if (bookStore.isBookSuccessSaved) {
+      dispatch(refreshStore());
+    }
+
     if (id !== undefined) {
       dispatch(fetchBook(id));
     }
   }, []);
 
   useEffect(() => {
-    setState((prevState) => ({
-      ...prevState,
-      book: bookStore.book,
-    }));
+    setBookState(bookStore.book);
   }, [bookStore.book]);
 
   const checkEmptyFields = () => {
-    const { name, description, publicationDate, authorId } = state.book;
+    const { name, description, publicationDate, authorId } = bookState;
     return (
       name === "" ||
       description === "" ||
@@ -100,8 +98,8 @@ const BookEdit = () => {
     if (checkEmptyFields()) return;
 
     id === undefined
-      ? dispatch(fetchCreatingBook(state.book))
-      : dispatch(fetchEditBook(id, state.book));
+      ? dispatch(fetchCreatingBook(bookState))
+      : dispatch(fetchEditBook(id, bookState));
   };
 
   return (
@@ -118,47 +116,46 @@ const BookEdit = () => {
           <TextField
             label={formatMessage({ id: "bookNameField" })}
             className={classes.input}
-            value={state.book.name}
+            value={bookState.name}
             onChange={(e) =>
-              setState({
-                ...state,
-                book: { ...state.book, name: e.target.value },
-              })
+              setBookState((prevState) => ({
+                ...prevState,
+                name: e.target.value,
+              }))
             }
           />
           <TextField
             label={formatMessage({ id: "bookDescriptionField" })}
             className={classes.input}
-            value={state.book.description}
+            value={bookState.description}
             onChange={(e) =>
-              setState({
-                ...state,
-                book: { ...state.book, description: e.target.value },
-              })
+              setBookState((prevState) => ({
+                ...prevState,
+                description: e.target.value,
+              }))
             }
           />
           <TextField
             label={formatMessage({ id: "bookPublicationDateField" })}
             type={"date"}
             className={classes.input}
-            value={state.book.publicationDate}
+            value={bookState.publicationDate}
             onChange={(e) =>
-              setState({
-                ...state,
-                book: { ...state.book, publicationDate: e.target.value },
-              })
+              setBookState((prevState) => ({
+                ...prevState,
+                publicationDate: e.target.value,
+              }))
             }
           />
           <Select
             className={classes.input}
             label={formatMessage({ id: "bookAuthorField" })}
-            value={state.book.authorId}
-            defaultValue={state.book.authorId}
+            value={bookState.authorId}
             onChange={(e) =>
-              setState({
-                ...state,
-                book: { ...state.book, authorId: e.target.value },
-              })
+              setBookState((prevState) => ({
+                ...prevState,
+                authorId: e.target.value,
+              }))
             }
           >
             <MenuItem value={0}>

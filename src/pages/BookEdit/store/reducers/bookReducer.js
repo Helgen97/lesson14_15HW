@@ -12,7 +12,12 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-    book: {},
+    book: {
+        name: "",
+        description: "",
+        publicationDate: "2023-01-01",
+        authorId: 0,
+    },
     isLoading: false,
     isBookSuccessSaved: false,
     isError: false
@@ -21,7 +26,10 @@ const initialState = {
 const bookReducer = (state = initialState, action) => {
     switch (action.type) {
         case REFRESH_STORE: {
-            return initialState;
+            return {
+                ...state,
+                isBookSuccessSaved: false
+            };
         }
         case CREATING_BOOK:
         case EDITING_BOOK:

@@ -76,7 +76,6 @@ const editBook = (id, book) => {
 
 export const fetchCreatingBook = (book) => async (dispatch) => {
     dispatch(requestCreateBook());
-
     return createBook(book)
         .then(() => dispatch(successCreatedBook()))
         .catch(() => dispatch(errorCreatingBook()))
@@ -102,5 +101,5 @@ export const fetchEditBook = (id, book) => async (dispatch) => {
 }
 
 export const refreshStore = () => (dispatch) => {
-    return dispatch(cleanStore());
+     return dispatch(cleanStore());
 }
