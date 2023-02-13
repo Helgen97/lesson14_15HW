@@ -66,11 +66,9 @@ const BookEdit = () => {
     authorId: 0,
   });
 
-  useEffect(() => {
-    if (bookStore.isBookSuccessSaved) {
-      dispatch(refreshStore());
-    }
+  const [isBookSuccessSaved, setSuccess] = useState(false);
 
+  useEffect(() => {
     if (id !== undefined) {
       dispatch(fetchBook(id));
     }
@@ -79,6 +77,11 @@ const BookEdit = () => {
   useEffect(() => {
     setBookState(bookStore.book);
   }, [bookStore.book]);
+
+  useEffect(() => {
+    setSuccess(bookStore.isBookSuccessSaved);
+    dispatch(refreshStore());
+  }, [bookStore.isBookSuccessSaved]);
 
   const checkEmptyFields = () => {
     const { name, description, publicationDate, authorId } = bookState;
@@ -106,7 +109,7 @@ const BookEdit = () => {
     <>
       {bookStore.isLoading && <Loader />}
 
-      {bookStore.isBookSuccessSaved && <Redirect to={`/${PAGES.BOOKS}`} />}
+      {isBookSuccessSaved && <Redirect to={`/${PAGES.BOOKS}`} />}
 
       {!bookStore.isLoading && (
         <Paper elevation={3} className={classes.container}>
